@@ -88,8 +88,8 @@ public class SweetAlertDialog extends Dialog implements View.OnClickListener {
     public static final int CUSTOM_IMAGE_TYPE = 4;
     public static final int PROGRESS_TYPE = 5;
 
-
-    public static boolean DARK_STYLE = false;
+//    public static final int DARK_STYLE = 6;
+    public static final int CUSTOM_IMAGE_DARK_STYLE = 7;
 
     //aliases
     public final static int BUTTON_CONFIRM = DialogInterface.BUTTON_POSITIVE;
@@ -108,12 +108,12 @@ public class SweetAlertDialog extends Dialog implements View.OnClickListener {
         void onClick(SweetAlertDialog sweetAlertDialog);
     }
 
-    public SweetAlertDialog(Context context) {
-        this(context, NORMAL_TYPE);
+     public SweetAlertDialog(Context context) {
+        this(context, NORMAL_TYPE, R.style.alert_dialog_light);
     }
 
-    public SweetAlertDialog(Context context, int alertType) {
-        super(context, DARK_STYLE ? R.style.alert_dialog_dark : R.style.alert_dialog_light);
+    public SweetAlertDialog(Context context, int alertType, int styleRes) {
+        super(context, styleRes);
         setCancelable(true);
         setCanceledOnTouchOutside(true); //TODO was false
 
@@ -298,6 +298,7 @@ public class SweetAlertDialog extends Dialog implements View.OnClickListener {
                     mWarningFrame.setVisibility(View.VISIBLE);
                     break;
                 case CUSTOM_IMAGE_TYPE:
+                case CUSTOM_IMAGE_DARK_STYLE:
                     setCustomImage(mCustomImgDrawable);
                     break;
                 case PROGRESS_TYPE:
